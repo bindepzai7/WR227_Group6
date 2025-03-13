@@ -42,7 +42,7 @@ class BasicBlock(nn.Module):
 
 # Define the ResNet class
 class ResNet18(nn.Module):
-    def __init__(self, block, layers, activation, initializer, num_classes=1000):
+    def __init__(self, block, layers, activation, initializer, sample_input = None, num_classes=1000):
         """
         Args:
             block: Block class (BasicBlock for ResNet18)
@@ -69,7 +69,7 @@ class ResNet18(nn.Module):
         self.fc = nn.Linear(512 * block.expansion, num_classes)
 
         # Initialize weights
-        self.apply(lambda m: initialize_weights(m, initializer))
+        self.apply(lambda m: initialize_weights(m, initializer, sample_input))
 
     def _make_layer(self, block, out_channels, blocks, activation, stride=1):
         """
