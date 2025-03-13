@@ -121,9 +121,9 @@ class ResNet18(nn.Module):
         return x
 
 # Helper function to instantiate ResNet18
-def resnet18(activation, initializer, num_classes):
+def resnet18(activation, initializer, sample_input = None, num_classes = 1000):
     """Constructs a ResNet-18 model."""
-    return ResNet18(BasicBlock, [2, 2, 2, 2], activation, initializer, num_classes=num_classes)
+    return ResNet18(BasicBlock, [2, 2, 2, 2], activation, initializer, sample_input, num_classes=num_classes)
 
 # Example usage:
 if __name__ == "__main__":
