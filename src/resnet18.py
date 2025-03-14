@@ -53,10 +53,10 @@ class ResNet18(nn.Module):
         self.in_channels = 64
 
         # Initial convolutional layer and max pool
-        self.conv1 = nn.Conv2d(3, self.in_channels, kernel_size=7, stride=2, padding=3, bias=False)
+        self.conv1 = nn.Conv2d(3, self.in_channels, kernel_size=3, stride=1, padding=1, bias=False)
         self.bn1 = nn.BatchNorm2d(self.in_channels)
         self.act = get_activation(activation)
-        self.maxpool = nn.MaxPool2d(kernel_size=3, stride=2, padding=1)
+        #self.maxpool = nn.MaxPool2d(kernel_size=3, stride=2, padding=1)
 
         # Define the 4 layers of the network
         self.layer1 = self._make_layer(block, 64,  layers[0], activation, stride=1)
@@ -105,7 +105,7 @@ class ResNet18(nn.Module):
         x = self.conv1(x)
         x = self.bn1(x)
         x = self.act(x)
-        x = self.maxpool(x)
+        #x = self.maxpool(x)
 
         # Pass through all layers
         x = self.layer1(x)
