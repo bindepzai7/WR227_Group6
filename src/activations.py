@@ -22,6 +22,6 @@ def get_activation(activation):
     elif activation == 'mish':
         return Mish(inplace=True)
     elif activation == 'gelu':
-        return nn.GELU(inplace=True)   
+        return nn.GELU()   
     else:
         raise NotImplementedError(f"Activation {activation} not implemented")
