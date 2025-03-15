@@ -4,6 +4,7 @@ from torch.utils.data import random_split, DataLoader
 import torchvision
 import torchvision.transforms as transforms
 from resnet18 import resnet18
+from vgg16 import vgg16
 from training import fit, evaluate
 import json
 import os
@@ -27,9 +28,9 @@ def data_loader_cifar10(batch_size = 128):
     test_dataset = torchvision.datasets.CIFAR10(root='./data', train=False, download=True, transform=transform)
 
     # Create data loaders for training, validation, and test sets
-    train_loader = DataLoader(train_dataset, batch_size=4, shuffle=True, num_workers=2)
-    val_loader = DataLoader(val_dataset, batch_size=4, shuffle=False, num_workers=2)
-    test_loader = DataLoader(test_dataset, batch_size=4, shuffle=False, num_workers=2)
+    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=2)
+    val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False, num_workers=2)
+    test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False, num_workers=2)
 
     return train_loader, val_loader, test_loader
 
@@ -56,18 +57,13 @@ def cifar10(activation, initializer, seed = 0):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     
     # Load the CIFAR-10 data
-    train_loader, val_loader, test_loader = data_loader_cifar10(seed)
+    train_loader, val_loader, test_loader = data_loader_cifar10()
 
     # Define the ResNet18 model
     sample_input = None
     if initializer == 'lsuv':
         sample_input = next(iter(train_loader))[0]
-    model = resnet18(
-        activation=activation, 
-        initializer=initializer, 
-        sample_input=sample_input, 
-        num_classes=10
-    ).to(device)
+    model = vgg16(activation, initializer, sample_input).to(device)
 
     # Define the loss function and optimizer
     lr = 0.001
