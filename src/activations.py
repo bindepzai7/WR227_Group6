@@ -18,9 +18,9 @@ def get_activation(activation):
     elif activation == 'elu':
         return nn.ELU(inplace=True)
     elif activation == 'swish':
-        return Swish(inplace=True)  
+        return Swish()  
     elif activation == 'mish':
-        return Mish(inplace=True)
+        return Mish()
     elif activation == 'gelu':
         return nn.GELU()   
     else:
