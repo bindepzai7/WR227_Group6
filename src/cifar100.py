@@ -9,7 +9,7 @@ from training import fit, evaluate
 import json
 import os
 
-def data_loader_cifar10(batch_size = 128):
+def data_loader_cifar100(batch_size = 128):
     """Returns CIFAR-10 train and test data loaders."""
     transform_train = transforms.Compose([
         transforms.RandomCrop(32, padding=4),
@@ -23,7 +23,7 @@ def data_loader_cifar10(batch_size = 128):
     ])
 
     # Download and load the CIFAR-10 training dataset
-    dataset = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform=transform_train)
+    dataset = torchvision.datasets.CIFAR100(root='./data', train=True, download=True, transform=transform_train)
 
     # Split the dataset into training and validation sets (80% training, 20% validation)
     train_size = int(0.8 * len(dataset))
@@ -32,7 +32,7 @@ def data_loader_cifar10(batch_size = 128):
     val_dataset.transform = transform_test
 
     # Download and load the CIFAR-10 test dataset
-    test_dataset = torchvision.datasets.CIFAR10(root='./data', train=False, download=True, transform=transform_test)
+    test_dataset = torchvision.datasets.CIFAR100(root='./data', train=False, download=True, transform=transform_test)
 
     # Create data loaders for training, validation, and test sets
     train_loader = DataLoader(
@@ -62,14 +62,14 @@ def save_results(train_losses, val_losses, train_accs, val_accs, epochs_time, te
     with open(file_name, 'w') as f:
         json.dump(results, f)
 
-def cifar10(activation, initializer, seed = 0):
+def cifar100(activation, initializer, seed = 0):
     """Run the CIFAR-10 experiment."""
     # Set the seed and device for reproducibility
     torch.manual_seed(seed)
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     
     # Load the CIFAR-10 data
-    train_loader, val_loader, test_loader = data_loader_cifar10()
+    train_loader, val_loader, test_loader = data_loader_cifar100()
 
     # Define the ResNet18 model
     sample_input = None
@@ -79,7 +79,7 @@ def cifar10(activation, initializer, seed = 0):
         activation=activation, 
         initializer=initializer, 
         sample_input=sample_input, 
-        num_classes=10
+        num_classes=100
     ).to(device)
     
     # Define the loss function and optimizer
@@ -105,4 +105,4 @@ def cifar10(activation, initializer, seed = 0):
 if __name__ == "__main__":
     activation = 'gelu'
     initializer = 'he'
-    cifar10(activation, initializer, seed=0)
+    cifar100(activation, initializer, seed=0)
