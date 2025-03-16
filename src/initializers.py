@@ -1,6 +1,8 @@
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
+
+
+
 
 def initialize_weights(m, initializer, sample_input=None):
     if initializer == 'he':
@@ -29,6 +31,15 @@ def initialize_weights(m, initializer, sample_input=None):
             # Iteratively adjust the weights to achieve unit variance output
             tol = 0.1
             max_iter = 20
+            # Create a sample input with the correct number of channels
+            # for the first convolutional layer
+            if isinstance(m, nn.Conv2d) and m.in_channels != sample_input.shape[1]:
+                sample_input = torch.randn(sample_input.shape[0], m.in_channels, sample_input.shape[2], sample_input.shape[3], device=sample_input.device)
+            # Reshape the input for linear layers
+            if isinstance(m, nn.Linear):
+                sample_input = sample_input.view(sample_input.size(0), -1)  # Flatten the input
+                sample_input = sample_input[:, :m.in_features]  # Select the correct number of features
+
             for i in range(max_iter):
                 with torch.no_grad():
                     output = m(sample_input)
