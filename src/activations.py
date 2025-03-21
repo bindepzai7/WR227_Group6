@@ -17,10 +17,10 @@ def get_activation(activation):
         return nn.LeakyReLU(negative_slope=0.01, inplace=True)
     elif activation == 'elu':
         return nn.ELU(inplace=True)
-    elif activation == 'swish':
-        return Swish()  
+    elif activation == 'silu':
+        return nn.SiLU() 
     elif activation == 'mish':
-        return Mish()
+        return nn.Mish()
     elif activation == 'gelu':
         return nn.GELU()   
     else:
