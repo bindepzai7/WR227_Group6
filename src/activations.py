@@ -11,6 +11,10 @@ class Mish(nn.Module):
         return x * torch.tanh(F.softplus(x))
 
 def get_activation(activation):
+    if activation == 'sigmoid':
+        return nn.Sigmoid()
+    elif activation == 'tanh':
+        return nn.Tanh()
     if activation == 'relu':
         return nn.ReLU(inplace = True)
     elif activation == 'leaky_relu':

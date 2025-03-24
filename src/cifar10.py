@@ -112,8 +112,8 @@ def cifar10(activation, initializer, seed = 0):
     save_results(train_losses, val_losses, train_accs, val_accs, epochs_time, test_loss, test_acc, activation, initializer)
 
 if __name__ == "__main__":
-    activations = ['mish','gelu']    
-    #activation = 'gelu'
-    initializer = 'orthogonal'
-    for activation in activations:
-        cifar10(activation, initializer, seed=0)
+    #activations = ['mish','gelu']    
+    activation = 'tanh'
+    initializer = 'lsuv'
+    #for activation in activations:
+    cifar10(activation, initializer, seed=0)
