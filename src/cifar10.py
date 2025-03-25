@@ -53,7 +53,7 @@ def data_loader_cifar10(batch_size = 256):
 def save_results(train_losses, val_losses, train_accs, val_accs, epochs_time, test_loss, test_acc, activation, initializer):
     save_dir = 'results'
     os.makedirs(save_dir, exist_ok=True)
-    file_name = os.path.join(save_dir, f'noBN_cifar10_{activation}_{initializer}.json')
+    file_name = os.path.join(save_dir, f'BN_cifar10_{activation}_{initializer}.json')
     results = {
         'train_losses': train_losses,
         'val_losses': val_losses,  
@@ -113,7 +113,11 @@ def cifar10(activation, initializer, seed = 0):
 
 if __name__ == "__main__":
     #activations = ['mish','gelu']    
-    activation = 'tanh'
-    initializer = 'lsuv'
+    activations = ['relu', 'elu', 'mish']
+    initializers = ['he', 'xavier', 'orthogonal', 'lsuv']
+    #initializer = 'lsuv'
+    for activation in activations:
+        for initializer in initializers:
+            cifar10(activation, initializer, seed=0)
     #for activation in activations:
-    cifar10(activation, initializer, seed=0)
+    #cifar10(activation, initializer, seed=0)
