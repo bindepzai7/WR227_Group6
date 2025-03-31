@@ -101,23 +101,35 @@ def cifar10(activation, initializer, seed = 0):
     train_losses, val_losses, train_accs, val_accs, epochs_time = fit(
         model, train_loader, test_loader, criterion, optimizer, device, num_epochs
     )
+    return epochs_time
 
-    # Evaluate the model on the test set
-    test_loss, test_acc = evaluate(model, criterion, test_loader, device=device)
-    print(f'Test Loss: {test_loss:.4f}, Test Accuracy: {test_acc:.4f}')
-    print(f'Time taken: {epochs_time}')
+    # # Evaluate the model on the test set
+    # test_loss, test_acc = evaluate(model, criterion, test_loader, device=device)
+    # print(f'Test Loss: {test_loss:.4f}, Test Accuracy: {test_acc:.4f}')
+    # print(f'Time taken: {epochs_time}')
 
-    # Save to a json file
+    # # Save to a json file
 
-    save_results(train_losses, val_losses, train_accs, val_accs, epochs_time, test_loss, test_acc, activation, initializer)
+    # #save_results(train_losses, val_losses, train_accs, val_accs, epochs_time, test_loss, test_acc, activation, initializer)
+
+def save_epochs_time(activation, initializer, seed, epochs_times):
+    save_dir = 'results'
+    os.makedirs(save_dir, exist_ok=True)
+    file_name = os.path.join(save_dir, f'time_cifar10_{activation}_{initializer}_{seed}.json')
+    results = {
+        'epochs_time': epochs_times
+    }
+    with open(file_name, 'w') as f:
+        json.dump(results, f)
 
 if __name__ == "__main__":
     #activations = ['mish','gelu']    
-    activations = ['relu', 'elu', 'mish']
-    initializers = ['he', 'xavier', 'orthogonal', 'lsuv']
-    #initializer = 'lsuv'
+    activations = ['silu', 'gelu', 'mish']
     for activation in activations:
-        for initializer in initializers:
-            cifar10(activation, initializer, seed=0)
+        epochs_times = []
+        for i in range(6):
+            epoch_time = cifar10(activation, 'he', seed=i)
+            epochs_times.append(epoch_time)
+        save_epochs_time(activation, 'he', i, epochs_times)
     #for activation in activations:
     #cifar10(activation, initializer, seed=0)
