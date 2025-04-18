@@ -1,28 +1,42 @@
 # WR227_Group6
 
-## Repository Overview
+## 📄 Overview
 
-This repository contains materials related to the **Technical Writing (WR227)** course. It serves as a central hub for organizing research, drafts, notes, and final documents related to our technical writing project.
+This repository hosts all materials related to the **WR227 - Technical Writing** course project. It serves as a centralized workspace for research artifacts, drafts, notes, and final deliverables developed by **Group 6**.
 
-## Project Information
+## 📘 Project Description
 
-The primary focus of this project is to research and analyze a topic in **Computer Science (CS)**. The specific topic will be added later as the research progresses. The project involves:
-- Conducting in-depth research on the selected CS topic.
-- Gathering and citing credible sources.
-- Structuring a well-organized research paper.
-- Presenting findings in a clear and concise manner.
+The objective of this project is to investigate and analyze a selected topic in **Computer Science** through both theoretical research and empirical study. The project culminates in a well-structured technical paper, adhering to professional standards in academic and technical writing.
 
-## Repository Structure
+### Key Components:
+- Conducting in-depth literature review and research.
+- Analyzing existing methods and approaches.
+- Citing and referencing credible academic sources.
+- Structuring, drafting, and revising a technical paper.
+- Presenting the findings clearly and concisely.
 
-## Members
+**Final topic:**  
+> *Activation Functions and Weight Initializers for CNN: A Comparative Study*  
+> [View Paper (PDF)](./Technical_Writing___Group_6.pdf)
+---
 
-- **Xin Quy Hung** - ID: 23125005
-- **Doan Duc Tuan** - ID: 23125021
+## 👥 Team Members
 
-## Getting Started
+- **Quy-Hung Xin** – Student ID: 23125005  
+- **Duc-Tuan Doan** – Student ID: 23125021
 
-To access and contribute to this project, follow these steps:
+## 🚀 Getting Started
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/your-repo/WR227_Group6.git
+To clone the repository and contribute locally:
+
+```bash
+git clone https://github.com/your-repo/WR227_Group6.git
+cd WR227_Group6
+```
+---
+Let me know if you also want to include:
+- `requirements.txt` setup for your experiments
+- LaTeX build instructions for the paper
+- License or academic integrity statement
+
+Happy writing! 📚✍️
