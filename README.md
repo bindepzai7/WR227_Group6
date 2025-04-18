@@ -17,7 +17,7 @@ The objective of this project is to investigate and analyze a selected topic in 
 
 **Final topic:**  
 > *Activation Functions and Weight Initializers for CNN: A Comparative Study*  
-> [View Paper (PDF)](./Technical_Writing___Group_6.pdf)
+> [View Paper (PDF)](project_assigments/PA7.pdf)
 ---
 
 ## 👥 Team Members
