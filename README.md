@@ -23,18 +23,16 @@ The objective of this project is to provide a comparative analysis of combinatio
 - Presenting findings in a clear and concise manner
 - Performing experiments using the chosen architecture (VGG19)
 
+## Results
+Our findings are:
+- The interactions between AFs and WIs can vary across different model architectures. In particular, models incorporating batch normalization layers exhibit behaviors that differ from those reported in earlier studies.
+- More recent combinations can improve the performance compared to traditional pairings (e.g., ELU and LSUV)
+---
 
 ## Team Members
 
 - **Quy-Hung Xin** – Student ID: 23125005  
 - **Duc-Tuan Doan** – Student ID: 23125021
-
----
-
-## Results
-Our findings are:
-- The interactions between AFs and WIs can vary across different model architectures. In particular, models incorporating batch normalization layers exhibit behaviors that differ from those reported in earlier studies.
-- More recent combinations can improve the performance compared to traditional pairings (e.g., ELU and LSUV)
 
 ---
 ## Getting Started
